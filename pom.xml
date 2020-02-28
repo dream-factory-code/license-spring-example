@@ -12,21 +12,17 @@
         <dependency>
             <groupId>com.licensespring</groupId>
             <artifactId>sdk-java</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>0.1</version>
         </dependency>
 
     </dependencies>
 
-    <distributionManagement>
-        <snapshotRepository>
-            <id>jdk-java</id>
-            <url>s3://licensespring-maven.s3-website.eu-central-1.amazonaws.com/snapshot</url>
-        </snapshotRepository>
-
+    <repositories>
         <repository>
             <id>jdk-java</id>
-            <url>s3://licensespring-maven.s3-website.eu-central-1.amazonaws.com/</url>
+            <url>https://licensespring-maven.s3.eu-central-1.amazonaws.com/</url>
         </repository>
-    </distributionManagement>
+    </repositories>
+
 
 </project>
