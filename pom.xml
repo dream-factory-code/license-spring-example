@@ -20,12 +20,12 @@
     <distributionManagement>
         <snapshotRepository>
             <id>jdk-java</id>
-            <url>s3://licensespring-maven/snapshot</url>
+            <url>s3://licensespring-maven.s3-website.eu-central-1.amazonaws.com/snapshot</url>
         </snapshotRepository>
 
         <repository>
             <id>jdk-java</id>
-            <url>s3://licensespring-maven</url>
+            <url>s3://licensespring-maven.s3-website.eu-central-1.amazonaws.com/</url>
         </repository>
     </distributionManagement>
 
