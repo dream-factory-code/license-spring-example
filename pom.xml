@@ -18,7 +18,7 @@
         <dependency>
             <groupId>com.licensespring</groupId>
             <artifactId>sdk-java</artifactId>
-            <version>0.1</version>
+            <version>1.2</version>
         </dependency>
 
     </dependencies>

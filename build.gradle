@@ -14,7 +14,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.licensespring:sdk-java:0.1'
+    implementation 'com.licensespring:sdk-java:1.2'
 }
 
 group = 'com.licensespring.sample'
