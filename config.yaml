@@ -1,6 +1,6 @@
-!!com.baeldung.snakeyaml.LicenseSpringConfiguration
 apiKey: "api-key"
 productCode: "TT"
 sharedKey: "shared-secret-key"
 appName: "Test app"
 appVer: "2"
+serviceURL: "https://api.licensespring.com/"
