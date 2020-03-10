@@ -16,7 +16,6 @@ repositories {
 dependencies {
     implementation 'com.licensespring:sdk-java:1.2'
     compile 'org.yaml:snakeyaml:1.25'
-    compile 'com.google.guava:guava:18.0'
 }
 
 group = 'com.licensespring.sample'
