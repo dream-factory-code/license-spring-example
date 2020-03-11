@@ -2,55 +2,48 @@ package com.dreamfactory;
 
 import com.licensespring.License;
 import com.licensespring.LicenseManager;
-import com.licensespring.LicenseSpringConfiguration;
 import com.licensespring.model.ActivationLicense;
 import com.licensespring.model.Product;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.*;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Map;
 
 public class Main {
 
     public static void main(String[] args) throws IOException {
         Yaml yaml = new Yaml();
-        InputStream inputStream = Files.newInputStream(Paths.get("config.yaml"));
-        Map<String, String> obj = yaml.load(inputStream);
-        inputStream.close();
+        Path path = Paths.get("config.yaml");
+        Configuration configuration = null;
 
-        LicenseSpringConfiguration configuration = LicenseSpringConfiguration.builder()
-                .apiKey(obj.get("apiKey"))
-                .productCode(obj.get("productCode"))
-                .sharedKey(obj.get("sharedKey"))
-                .appName(obj.get("appName"))
-                .appVersion(obj.get("appVersion"))
-                //redundant
-                .serviceURL(obj.get("serviceURL"))
-                .build();
+        try (InputStream inputStream = Files.newInputStream(path)){
+            configuration = yaml.loadAs(inputStream, Configuration.class);
+        }
 
-        System.out.println(configuration);
         LicenseManager manager = LicenseManager.getInstance();
-
-        manager.initialize(configuration);
+        manager.initialize(configuration.toLicenseSpringConfiguration());
 
         Product product = manager.getProductDetails();
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-        if (product.getAuthorizationMethod().equals("user")){
-            System.out.println("Please enter username:");
-            String username = reader.readLine();
+        try(BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))){
+            if (product.getAuthorizationMethod().equals("user")){
+                System.out.println("\nPlease enter username:");
+                String username = reader.readLine();
 
-            System.out.println("Please enter password:");
-            String password = reader.readLine();
-            activateUser(username, password);
-        } else {
-            System.out.println("Please enter key:");
-            String key = reader.readLine();
-            activate(key);
+                System.out.println("\nPlease enter password:");
+                String password = reader.readLine();
+                activateUser(username, password);
+            } else {
+                System.out.println("\nPlease enter key:");
+                String key = reader.readLine();
+                activate(key);
+            }
+            System.out.println("\nLicense successfully activated.");
         }
-        System.out.println("License successfully activated.");
+
+
 }
 
     private static void activateUser(String username, String password) {

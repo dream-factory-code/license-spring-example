@@ -16,6 +16,7 @@ repositories {
 dependencies {
     implementation 'com.licensespring:sdk-java:1.2'
     compile 'org.yaml:snakeyaml:1.25'
+    compileOnly 'org.projectlombok:lombok:1.18.10'
 }
 
 group = 'com.licensespring.sample'
