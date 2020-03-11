@@ -4,6 +4,7 @@ import com.licensespring.License;
 import com.licensespring.LicenseManager;
 import com.licensespring.LicenseSpringConfiguration;
 import com.licensespring.model.ActivationLicense;
+import com.licensespring.model.Product;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.*;
@@ -17,6 +18,7 @@ public class Main {
         Yaml yaml = new Yaml();
         InputStream inputStream = Files.newInputStream(Paths.get("config.yaml"));
         Map<String, String> obj = yaml.load(inputStream);
+        inputStream.close();
 
         LicenseSpringConfiguration configuration = LicenseSpringConfiguration.builder()
                 .apiKey(obj.get("apiKey"))
@@ -28,48 +30,39 @@ public class Main {
                 .serviceURL(obj.get("serviceURL"))
                 .build();
 
-        inputStream.close();
-
         System.out.println(configuration);
         LicenseManager manager = LicenseManager.getInstance();
 
         manager.initialize(configuration);
 
+        Product product = manager.getProductDetails();
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-        System.out.println("Would you like to enter a license using your username and password (press \"u\")\n" +
-                "or with a license key (press \"k\").");
-        String choice = reader.readLine();
-
-        if (choice.equals("u")){
-            System.out.println("\nPlease enter username:");
+        if (product.getAuthorizationMethod().equals("user")){
+            System.out.println("Please enter username:");
             String username = reader.readLine();
 
             System.out.println("Please enter password:");
             String password = reader.readLine();
             activateUser(username, password);
         } else {
-            System.out.println("\nPlease enter key:");
+            System.out.println("Please enter key:");
             String key = reader.readLine();
             activate(key);
         }
-        System.out.println("License successfully issued.");
+        System.out.println("License successfully activated.");
 }
 
     private static void activateUser(String username, String password) {
-
         LicenseManager instance = LicenseManager.getInstance();
 
         License license = instance.activateLicense(ActivationLicense.fromUsername(username, password));
-
     }
 
     private static void activate(String key) {
-
         LicenseManager instance = LicenseManager.getInstance();
 
         License license = instance.activateLicense(ActivationLicense.fromKey(key));
-
     }
 
 }
