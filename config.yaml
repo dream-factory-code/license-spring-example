@@ -1,6 +1,0 @@
-apiKey: "api-key"
-productCode: "TT"
-sharedKey: "shared-secret-key"
-appName: "Test app"
-appVersion: "2"
-serviceURL: "https://api.licensespring.com/"
