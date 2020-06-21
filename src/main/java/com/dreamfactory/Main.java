@@ -45,6 +45,7 @@ public class Main {
             }
             System.out.println("\nLicense successfully activated.");
         }
+
         License license = manager.getCurrent();
 
         MachineInfo machineInfo = HardwareInfo.getMachineInfo();

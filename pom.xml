@@ -18,14 +18,8 @@
     <dependencies>
         <dependency>
             <groupId>com.licensespring</groupId>
-            <artifactId>androidsdk</artifactId>
-            <version>0.1</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.licensespring</groupId>
             <artifactId>sdk-java</artifactId>
-            <version>1.4</version>
+            <version>1.9</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
