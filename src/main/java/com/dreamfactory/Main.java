@@ -8,12 +8,15 @@ import com.licensespring.model.ActivationLicense;
 import com.licensespring.model.Product;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
+import oshi.SystemInfo;
+import oshi.hardware.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.security.GeneralSecurityException;
+import java.util.List;
 
 public class Main {
 
@@ -54,9 +57,15 @@ public class Main {
         System.out.println("Hardware ID >>> " + license.getHardwareId());
         System.out.println("VM info >>> " + vmInfo);
 
-//        writing data to excel
-//        ExcelService service = new ExcelService(configuration,license);
-//        service.startDataTransfer();
+        SystemInfo systemInfo = new SystemInfo();
+        HardwareAbstractionLayer hardware = systemInfo.getHardware();
+        ComputerSystem computerSystem = hardware.getComputerSystem();
+
+        String hardwareBase =  "BASE >> " + getBaseId(computerSystem.getBaseboard())
+                + "\nCPU >> " + getCPU(hardware.getProcessor().getProcessorIdentifier())
+                + "\nDISK >> " + getDiskId(hardware);
+        System.out.println("Hardware >>> " + hardwareBase);
+
         System.exit(0);
     }
 
@@ -72,4 +81,30 @@ public class Main {
         License license = instance.activateLicense(ActivationLicense.fromKey(key));
     }
 
+
+    private static String getDiskId(HardwareAbstractionLayer hardware) {
+        List<HWDiskStore> diskStores = hardware.getDiskStores();
+        if(diskStores == null || diskStores.size() == 0){
+            return "";
+        }
+
+        HWDiskStore hwDiskStore = diskStores.get(0);
+        return hwDiskStore.getModel() +
+                hwDiskStore.getName() +
+                hwDiskStore.getSerial();
+    }
+
+    private static String getBaseId(Baseboard baseboard) {
+        return baseboard.getModel() +
+                baseboard.getManufacturer() +
+                baseboard.getSerialNumber() +
+                baseboard.getVersion();
+    }
+
+    private static String getCPU(CentralProcessor.ProcessorIdentifier identifier){
+        return identifier.getName() +
+                identifier.getModel() +
+                identifier.getProcessorID();
+
+    }
 }
