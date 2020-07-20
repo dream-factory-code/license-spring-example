@@ -13,6 +13,7 @@
         <maven.compiler.plugin>3.8.1</maven.compiler.plugin>
         <project.java.version>1.8</project.java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <docker.image.prefix>dreamfactoryhr</docker.image.prefix>
     </properties>
 
     <dependencies>
@@ -127,6 +128,14 @@
                 </executions>
             </plugin>
 
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>dockerfile-maven-plugin</artifactId>
+                <version>1.3.6</version>
+                <configuration>
+                    <repository>${docker.image.prefix}/${project.artifactId}</repository>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
