@@ -6,8 +6,9 @@
             <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}   [%-5p] %c - %m\n </pattern>
         </encoder>
     </appender>
+    <logger name="com.licensespring" level="DEBUG"/>
 
-    <root level ="DEBUG">
+    <root level ="INFO">
         <appender-ref ref="CONSOLE"/>
     </root>
 
