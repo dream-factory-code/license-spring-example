@@ -19,9 +19,15 @@ dependencies {
     implementation 'com.licensespring:licensespring-license-client:2.0.1-prerelease'
     compile 'org.yaml:snakeyaml:1.25'
     compileOnly 'org.projectlombok:lombok:1.18.10'
-    compile group: 'org.codehaus.mojo', name: 'animal-sniffer-annotations', version: '1.18'
-    compile 'org.slf4j:slf4j-api:1.7.30'
+//    compile 'org.slf4j:slf4j-api:1.7.30'
+    compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
+    compile group: 'ch.qos.logback', name: 'logback-core', version: '1.2.3'
+
+
+
+
 }
+
 
 group = 'com.licensespring.sample'
 version = '1.0'
