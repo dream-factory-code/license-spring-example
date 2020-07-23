@@ -16,7 +16,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.licensespring:licensespring-license-client:2.0.1-prerelease'
+    implementation 'com.licensespring:licensespring-license-client:2.0.1'
     compile 'org.yaml:snakeyaml:1.25'
     compileOnly 'org.projectlombok:lombok:1.18.10'
 //    compile 'org.slf4j:slf4j-api:1.7.30'
