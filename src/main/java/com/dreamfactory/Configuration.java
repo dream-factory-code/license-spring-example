@@ -70,4 +70,6 @@ public class Configuration {
     public void setServiceURL(String serviceURL) {
         this.serviceURL = serviceURL;
     }
+
+
 }

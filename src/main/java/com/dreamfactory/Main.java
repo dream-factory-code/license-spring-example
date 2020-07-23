@@ -105,6 +105,5 @@ public class Main {
         return identifier.getName() +
                 identifier.getModel() +
                 identifier.getProcessorID();
-
     }
 }
