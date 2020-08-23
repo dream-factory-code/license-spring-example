@@ -6,7 +6,7 @@
 
     <groupId>com.licensespring.sample</groupId>
     <artifactId>sample</artifactId>
-    <version>2.0.1</version>
+    <version>2.0.2</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -20,24 +20,22 @@
         <dependency>
             <groupId>com.licensespring</groupId>
             <artifactId>licensespring-license-client</artifactId>
-            <version>2.0.1</version>
+            <version>2.0.2</version>
         </dependency>
+
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.10</version>
             <scope>provided</scope>
         </dependency>
+
         <dependency>
             <groupId>org.yaml</groupId>
             <artifactId>snakeyaml</artifactId>
             <version>1.25</version>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.slf4j</groupId>-->
-<!--            <artifactId>slf4j-api</artifactId>-->
-<!--            <version>1.7.30</version>-->
-<!--        </dependency>-->
+
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
@@ -49,9 +47,6 @@
             <artifactId>logback-core</artifactId>
             <version>1.2.3</version>
         </dependency>
-
-
-
 
 
     </dependencies>
@@ -107,7 +102,7 @@
                             <archive>
                                 <manifest>
                                     <mainClass>
-                                        com.dreamfactory.Main
+                                        com.dreamfactory.LicenseClientExample
                                     </mainClass>
                                 </manifest>
                             </archive>
