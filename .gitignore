@@ -29,6 +29,7 @@ maven-test.iml
 .idea/**/libraries
 gradle
 build
+.gradle
 
 
 LicenseSpring
