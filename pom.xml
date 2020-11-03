@@ -14,13 +14,26 @@
         <project.java.version>1.8</project.java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <docker.image.prefix>dreamfactoryhr</docker.image.prefix>
+        <client.version>2.3.2</client.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>com.licensespring</groupId>
             <artifactId>licensespring-license-client</artifactId>
-            <version>2.0.2</version>
+            <version>${client.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.licensespring</groupId>
+            <artifactId>licensespring-floating-client</artifactId>
+            <version>${client.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.licensespring</groupId>
+            <artifactId>licensespring-license-management</artifactId>
+            <version>${client.version}</version>
         </dependency>
 
         <dependency>

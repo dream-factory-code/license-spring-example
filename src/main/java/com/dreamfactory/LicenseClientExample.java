@@ -31,11 +31,19 @@ public class LicenseClientExample {
     public static void main(String[] args) throws IOException {
         // Initialization, every time app starts.
         String path = "sample.yaml";
-        Yaml yaml = new Yaml(new Constructor(LicenseSpringConfiguration.class));
+        Yaml yaml = new Yaml(new Constructor(ConfigurationData.class));
         InputStream inputStream = LicenseClientExample.class.getClassLoader()
                 .getResourceAsStream(path);
 
-        LicenseSpringConfiguration configuration = yaml.load(inputStream);
+        ConfigurationData data = yaml.load(inputStream);
+
+        LicenseSpringConfiguration configuration = LicenseSpringConfiguration.builder()
+                .apiKey(data.getApiKey())
+                .productCode(data.getProductCode())
+                .sharedKey(data.getSharedKey())
+                .appName(data.getAppName())
+                .appVersion(data.getAppVer())
+                .build();
 
         manager = LicenseManager.getInstance();
         manager.initialize(configuration);

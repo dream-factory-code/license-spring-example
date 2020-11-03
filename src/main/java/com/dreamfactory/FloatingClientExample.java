@@ -3,25 +3,31 @@ package com.dreamfactory;
 import com.licensespring.floating.FloatingConfiguration;
 import com.licensespring.floating.FloatingLicenseService;
 import com.licensespring.model.ActivationLicense;
+import com.licensespring.model.DeviceVariables;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
 
 import java.io.InputStream;
-import java.util.HashMap;
-import java.util.Map;
 
 public class FloatingClientExample {
 
     public static void main(String[] args) {
         // Initialization, every time app starts.
         String path = "sample.yaml";
-        Yaml yaml = new Yaml(new Constructor(FloatingConfiguration.class));
+        Yaml yaml = new Yaml(new Constructor(ConfigurationData.class));
         InputStream inputStream = LicenseClientExample.class.getClassLoader()
                 .getResourceAsStream(path);
 
-        FloatingConfiguration configuration = yaml.load(inputStream);
+        ConfigurationData data = yaml.load(inputStream);
 
-        configuration.setCloudFloating(true);
+        FloatingConfiguration configuration = FloatingConfiguration.builder()
+                .apiKey(data.getApiKey())
+                .sharedKey(data.getSharedKey())
+                .productCode(data.getProductCode())
+                .appName(data.getAppName())
+                .appVersion(data.getAppVer())
+                .isCloudFloating(true)
+                .build();
 
         FloatingLicenseService service = new FloatingLicenseService(configuration);
 
@@ -37,10 +43,11 @@ public class FloatingClientExample {
         service.addFeatureConsumption(identity,"feature1", 1);
 
         // Track variables which can be seen on the platform.
-        Map<String, String> variables = new HashMap<>();
-        variables.put("variable1", "value1");
-        variables.put("variable2", "value2");
-        service.trackVariables(identity, variables);
+        DeviceVariables deviceVariables = DeviceVariables.builder()
+                .variable("variable1", "value1")
+                .variable("variable2", "value2")
+                .build();
+        service.trackVariables(identity,  deviceVariables);
 
         // Upon exit or as needed, release the license.
         service.releaseLicense(identity);
