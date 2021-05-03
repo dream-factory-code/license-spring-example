@@ -26,7 +26,6 @@ public class FloatingClientExample {
                 .productCode(data.getProductCode())
                 .appName(data.getAppName())
                 .appVersion(data.getAppVer())
-                .isCloudFloating(true)
                 .build();
 
         FloatingLicenseService service = new FloatingLicenseService(configuration);

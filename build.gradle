@@ -19,11 +19,10 @@ dependencies {
     implementation 'com.licensespring:licensespring-license-client:2.4.4'
     implementation 'com.licensespring:licensespring-floating-client:2.4.4'
     implementation 'com.licensespring:licensespring-license-management:2.4.4'
-    compile 'org.yaml:snakeyaml:1.25'
+    implementation 'org.yaml:snakeyaml:1.25'
+    implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
+    implementation group: 'ch.qos.logback', name: 'logback-core', version: '1.2.3'
     compileOnly 'org.projectlombok:lombok:1.18.10'
-    compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
-    compile group: 'ch.qos.logback', name: 'logback-core', version: '1.2.3'
-
 }
 
 
